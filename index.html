@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mira00 Hotel - Virtual Meeting Space</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <!-- Your CSS file -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+</head>
+<body>
+    <div class="hotel-container">
+        <!-- Left Navigation Panel -->
+        <nav class="hotel-nav">
+            <div class="logo">
+                <h1>Mira00 Hotel</h1>
+                <p>Virtual Meeting Space</p>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Public Spaces</h3>
+                <button class="nav-btn active" data-tab="hall">
+                    <i class="fas fa-door-open"></i> The Hall
+                </button>
+                <button class="nav-btn" data-tab="wall">
+                    <i class="fas fa-thumbtack"></i> The Wall
+                </button>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Private Rooms</h3>
+                <button class="nav-btn" data-tab="my-room">
+                    <i class="fas fa-bed"></i> My Room
+                </button>
+                <button class="nav-btn" id="btn-create-room">
+                    <i class="fas fa-plus-circle"></i> Create Room
+                </button>
+                <button class="nav-btn" id="btn-find-room">
+                    <i class="fas fa-search"></i> Find a Room
+                </button>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Management</h3>
+                <button class="nav-btn" id="btn-visitor-requests">
+                    <i class="fas fa-bell"></i> Visitor Requests
+                    <span class="badge">3</span>
+                </button>
+                <button class="nav-btn" data-tab="history">
+                    <i class="fas fa-history"></i> Chat History
+                </button>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <h4>John Doe</h4>
+                    <p>Room #301</p>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main class="hotel-main">
+            <header class="content-header">
+                <h2 id="main-title">The Hall - Public Chat</h2>
+                <div class="header-controls">
+                    <button class="header-btn" id="btn-notifications">
+                        <i class="fas fa-bell"></i> Notifications
+                    </button>
+                    <button class="header-btn" id="btn-settings">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <!-- The Hall (Public Chat) -->
+                <div id="hall" class="tab-content active">
+                    <!-- Hall content will be loaded here by JavaScript -->
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <h3><i class="fas fa-comments"></i> Public Hall Chat</h3>
+                            <div class="online-count">
+                                <i class="fas fa-users"></i> <span id="online-count">12</span> online
+                            </div>
+                        </div>
+                        <div class="chat-window" id="hall-chat">
+                            <!-- Messages will appear here -->
+                            <div class="message received">
+                                <div class="message-header">
+                                    <span class="sender">Hotel Manager</span>
+                                    <span class="time">10:00 AM</span>
+                                </div>
+                                <div class="message-content">
+                                    Welcome to the Hall! Feel free to chat with everyone here.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="hall-message-input" placeholder="Type your message here...">
+                            <button id="hall-send-btn">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- The Wall (Public Board) -->
+                <div id="wall" class="tab-content">
+                    <!-- Wall content will be loaded here by JavaScript -->
+                    <div class="wall-container">
+                        <div class="wall-header">
+                            <h3><i class="fas fa-thumbtack"></i> The Wall - Public Board</h3>
+                            <button class="btn-primary" id="btn-new-subject">
+                                <i class="fas fa-plus"></i> New Subject
+                            </button>
+                        </div>
+                        <div class="subjects-grid" id="subjects-container">
+                            <!-- Subjects will appear here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- My Room (Private Chat) -->
+                <div id="my-room" class="tab-content">
+                    <!-- Private room content will be loaded here by JavaScript -->
+                    <div class="room-container">
+                        <div class="room-header">
+                            <h3><i class="fas fa-door-closed"></i> My Private Room</h3>
+                            <div class="room-controls">
+                                <button class="btn-secondary" id="btn-invite">
+                                    <i class="fas fa-user-plus"></i> Invite
+                                </button>
+                                <button class="btn-secondary" id="btn-room-settings">
+                                    <i class="fas fa-cog"></i> Room Settings
+                                </button>
+                            </div>
+                        </div>
+                        <div class="room-content">
+                            <div class="chat-section">
+                                <div class="chat-window" id="room-chat">
+                                    <!-- Private messages will appear here -->
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" id="room-message-input" placeholder="Type your private message...">
+                                    <button id="room-send-btn">
+                                        <i class="fas fa-paper-plane"></i> Send
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="sidebar">
+                                <h4><i class="fas fa-users"></i> In This Room</h4>
+                                <div class="avatars-list" id="room-avatars">
+                                    <!-- Avatars will appear here -->
+                                </div>
+                                <div class="admin-panel">
+                                    <h4><i class="fas fa-shield-alt"></i> Room Controls</h4>
+                                    <div class="control-buttons">
+                                        <button class="btn-secondary">
+                                            <i class="fas fa-user-check"></i> Manage Visitors
+                                        </button>
+                                        <button class="btn-secondary">
+                                            <i class="fas fa-history"></i> View History
+                                        </button>
+                                        <button class="btn-secondary">
+                                            <i class="fas fa-download"></i> Export Chat
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat History -->
+                <div id="history" class="tab-content">
+                    <!-- History content will be loaded here by JavaScript -->
+                    <div class="history-container">
+                        <div class="history-header">
+                            <h3><i class="fas fa-history"></i> Chat History</h3>
+                            <div class="history-filters">
+                                <select id="history-filter">
+                                    <option value="all">All Chats</option>
+                                    <option value="hall">The Hall</option>
+                                    <option value="room">My Room</option>
+                                    <option value="private">Private Messages</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="history-cards" id="history-cards-container">
+                            <!-- History cards will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modals -->
+    
+    <!-- Create Room Modal -->
+    <div class="modal" id="create-room-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Private Room</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="room-name">Room Name</label>
+                    <input type="text" id="room-name" class="form-control" placeholder="Enter room name">
+                </div>
+                <div class="form-group">
+                    <label for="room-description">Description</label>
+                    <textarea id="room-description" class="form-control" rows="3" placeholder="Describe your room"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="room-privacy">Privacy Settings</label>
+                    <select id="room-privacy" class="form-control">
+                        <option value="private">Private - Approval Required</option>
+                        <option value="public">Public - Anyone Can Join</option>
+                        <option value="invite">Invite Only</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-primary">Create Room</button>
+                    <button class="btn-secondary modal-close">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Find Room Modal -->
+    <div class="modal" id="find-room-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Find a Room</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="search-room">Search Rooms</label>
+                    <input type="text" id="search-room" class="form-control" placeholder="Search by name or description">
+                </div>
+                <div class="rooms-list" id="rooms-list">
+                    <!-- Rooms will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- New Subject Modal -->
+    <div class="modal" id="new-subject-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Subject</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="subject-title">Title</label>
+                    <input type="text" id="subject-title" class="form-control" placeholder="Enter subject title">
+                </div>
+                <div class="form-group">
+                    <label for="subject-content">Content</label>
+                    <textarea id="subject-content" class="form-control" rows="5" placeholder="Write your message"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-primary">Post to Wall</button>
+                    <button class="btn-secondary modal-close">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Visitor Requests Modal -->
+    <div class="modal" id="visitor-requests-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Visitor Requests</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="visitor-request">
+                    <div class="visitor-info">
+                        <h4>Alex Johnson</h4>
+                        <p>Message: "Hello, can I join your room?"</p>
+                        <small>IP: 192.168.1.5 • 10:15 AM</small>
+                    </div>
+                    <div class="request-actions">
+                        <button class="btn-primary">Accept</button>
+                        <button class="btn-secondary">Reject</button>
+                    </div>
+                </div>
+                <!-- More requests will appear here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
